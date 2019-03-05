@@ -11,7 +11,7 @@
     "start": "next start",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint test pages __tests__"
+    "lint": "eslint src pages __tests__"
   },
   "husky": {
     "hooks": {
