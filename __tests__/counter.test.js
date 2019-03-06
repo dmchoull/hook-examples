@@ -8,7 +8,7 @@ test("counter starts at zero", () => {
   expect(getByLabelText("Count").value).toEqual("0");
 });
 
-test.skip("increment and decrement change the count", () => {
+test("increment and decrement change the count", () => {
   const { getByLabelText, getByText } = render(<CounterPage />);
 
   fireEvent.click(getByText("Increment"));
