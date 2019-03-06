@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   FormControl,
@@ -10,10 +10,27 @@ import {
 } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
+import { useDebounce } from "./useDebounce";
+import { search } from "./search";
+
+function useDebouncedSearch(title) {
+  const [results, setResults] = useState([]);
+  const debouncedSearchTerm = useDebounce(title, 500);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      search(debouncedSearchTerm).then(results => setResults(results));
+    } else {
+      setResults([]);
+    }
+  }, [debouncedSearchTerm]);
+
+  return results;
+}
 
 function MovieSearch({ classes }) {
   const [title, setTitle] = useState("");
-  const results = [];
+  const results = useDebouncedSearch(title);
 
   return (
     <>
