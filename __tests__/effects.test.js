@@ -6,7 +6,7 @@ import { search } from "../src/search/search";
 jest.useFakeTimers();
 jest.mock("../src/search/search", () => ({ search: jest.fn() }));
 
-test.skip("searches by title", () => {
+test("searches by title", () => {
   search.mockReturnValue(
     Promise.resolve([{ Title: "Test", Poster: "poster url" }])
   );
